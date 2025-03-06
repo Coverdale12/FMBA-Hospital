@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block title %}
+  Отделения больницы
+{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <div class="hero__wrapper container padding">
+      {% if 'children' in request.path %}
+        <h1 class="section__title background-border middle">Список отделений детской больницы</h1>
+      {% else %}
+        <h1 class="section__title background-border middle">Список отделений взрослой больницы</h1>
+      {% endif %}
+    </div>
+  </section>
+  <section class="news">
+    <div class="news__wrapper container">
+      <ul class="news__list all-news">
+        {% for department in departments %}
+          <li class="news__item">
+            <a href="{% url 'department_info' department.id %}" class="link-blog">
+              <article class="blog full for-icon chapter hover">
+                <div class="blog__icon">
+                  <svg width="120" height="120" viewBox="0 0 85 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.47716 0 0 4.47717 0 10V75C0 80.5228 4.47716 85 10 85H75C80.5228 85 85 80.5228 85 75V10C85 4.47717 80.5228 0 75 0H10ZM32 68C32 70.7615 34.2386 73 37 73H47C49.7614 73 52 70.7615 52 68V53H67C69.7614 53 72 50.7615 72 48V38C72 35.2385 69.7614 33 67 33H52V18C52 15.2385 49.7614 13 47 13H37C34.2386 13 32 15.2385 32 18V33H17C14.2386 33 12 35.2385 12 38V48C12 50.7615 14.2386 53 17 53H32V68Z" fill="#03045E"/>
+                  </svg> 
+                </div>                 
+                <div class="blog__body none-border-right">
+                  <h2 class="blog__title main-title small left no-back over">{{ department.name }}</h2>
+                  <p class="blog__content">{{ department.location }}</p>
+                </div>
+              </article>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+      <a href="{% url 'hospital_departments' %}" class="button-standart news__link">Назад</a>
+    </div>
+  </section>
+{% endblock %}

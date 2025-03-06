@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+  Врачи
+{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <div class="hero__wrapper container">
+      <h1 class="section__title background-border middle">Врачи Тюменской больницы Западно-Сибирского центра ФМБА России</h1>
+      <p class="main-subtitle small">Наши врачи - сертифицированные сотрудники со стажем, на которых уверенно можно положиться. Здесь вы можете посмотреть расписание врачей</p>
+    </div>
+  </section>
+  <section class="doctors">
+    <div class="doctors__wrapper container">
+      <h2 class="doctors__title main-title middle no-back">Специалисты</h2>
+      <ul class="doctors__list">
+        {% for doctor in doctors %}
+          <li class="doctor__item">
+            <article class="doctor bolder">
+              <img src="{{ doctor.photo.url }}" alt="Специалист {{ doctor.first_name }}" class="doctor__image" />
+              <div class="doctor__body">
+                <h3 class="doctor__fullname">{{ doctor.first_name }} {{ doctor.last_name }}</h3>
+                <p class="doctor__specialty">{{ doctor.specialty }}</p>
+                <p class="doctor__location">{{ doctor.department }}</p>
+                <a class="button-standart doctor__button shedule" href="/doctors/{{ doctor.id }}">Перейти на страницу врача</a>
+              </div>
+            </article>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

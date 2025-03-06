@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+  FMBA
+{% endblock %}
+
+{% block content %}
+  <section class="hero sections-animate">
+    <div class="hero__wrapper container no-pad">
+      <h1 class="visually-hidden">ФМБА</h1>
+      <div class="slider" data-js-slider>
+        <button class="slider__button prev" data-js-slider-button-prev><span class="visually-hidden">Предыдущее</span></button>
+        <ul class="slider__list" data-js-slider-container>
+          <li class="slider__item show" data-js-slide>
+            <article class="slide">
+              <div class="slide__description">
+                <h2 class="section__title small slide__title">Тюменская больница ФГБУЗ "Западно-Сибирский медицинский центр"</h2>
+                <a class="button-standart slide__link" href="/aboutus/">Подробнее</a>
+              </div>
+              <img src="{% static 'deps/images/hero/logotype-fmba.svg' %}" alt="Тюменская больница ФГБУЗ Западно-Сибирский медицинский центр" loading="lazy" class="slide__image" />
+            </article>
+          </li>
+          <li class="slider__item" data-js-slide>
+            <article class="slide reverse">
+              <img src="{% static 'deps/images/hero/plan-gosp.jpg' %}" alt="Отбор на плановую госпитализацию" loading="lazy" class="slide__image jpg" />
+              <div class="slide__description">
+                <h2 class="section__title small slide__title">Отбор на плановую госпитализацию</h2>
+                <a class="button-standart slide__link" href="/">Подробнее</a>
+              </div>
+            </article>
+          </li>
+          <li class="slider__item" data-js-slide>
+            <article class="slide">
+              <div class="slide__description">
+                <h2 class="section__title small slide__title">Услуги по ОМС</h2>
+                <a class="button-standart slide__link" href="/uslugi/uslugi_oms/">Подробнее</a>
+              </div>
+              <img src="{% static 'deps/images/hero/oms.jpg' %}" alt="Тюменская больница ФГБУЗ Западно-Сибирский медицинский центр" loading="lazy" class="slide__image jpg" />
+            </article>
+          </li>
+          <li class="slider__item" data-js-slide>
+            <article class="slide">
+              <div class="slide__description">
+                <h2 class="section__title small slide__title">Как записаться к нам на прием?</h2>
+                <a class="button-standart slide__link" href="/">Подробнее</a>
+              </div>
+              <img src="{% static 'deps/images/hero/zapis-na-priem.jpg' %}" alt="Женщина врач" loading="lazy" class="slide__image jpg big" />
+            </article>
+          </li>
+          <li class="slider__item" data-js-slide>
+            <article class="slide">
+              <div class="slide__description">
+                <h2 class="section__title small slide__title">Наши специалисты - это высококвалифицированный медицинский персонал!</h2>
+                <a class="button-standart slide__link" href="/doctors/">Подробнее</a>
+              </div>
+              <img src="{% static 'deps/images/hero/doctors.jpg' %}" alt="Наши специалисты" loading="lazy" class="slide__image jpg big" />
+            </article>
+          </li>
+        </ul>
+        <button class="slider__button next" data-js-slider-button-next><span class="visually-hidden">Следующее</span></button>
+      </div>
+    </div>
+  </section>
+  <section class="main-doctor sections-animate">
+    <h1 class="visually-hidden">Главный врач</h1>
+    <div class="main-doctor__wrapper container">
+      <div class="main-doctor__content">
+        <h2 class="section__title small main-doctor__title">Уважаемые пациенты!</h2>
+        <div class="main-doctor__description">
+          {% if main_doctor_content %}
+            {{ main_doctor_content.content|safe }}
+          {% else %}
+            <p>Информация недоступна.</p>
+          {% endif %}
+        </div>
+      </div>
+      <div class="main-doctor__image">
+        <img src="{% static 'deps/images/main-doctor/main-doctor.jpg' %}" alt="Боярская Лариса Александровна" class="image" />
+      </div>
+    </div>
+  </section>
+  <section class="news no-all sections-animate">
+    <div class="news__wrapper container">
+      <h1 class="section__title small news__title">Новости</h1>
+      <ul class="news__list">
+        {% for news in news_list|slice:':4' %}
+          <li class="news__item">
+            <article class="blog">
+              {% if news.image %}
+                <img src="{{ news.image.url }}" alt="{{ news.title }}" class="blog__image" />
+              {% else %}
+                <img src="{% static 'deps/images/news/news-placeholder.png' %}" alt="Новость" class="blog__image" />
+              {% endif %}
+              <div class="blog__body">
+                <a href="/news/{{ news.id }}" class="blog__link" title="Перейти"><h2 class="blog__title">{{ news.title }}</h2></a>
+                <time datetime="{{ news.created_at }}" class="blog__datatime">{{ news.created_at.date }}</time>
+              </div>
+            </article>
+          </li>
+        {% endfor %}
+      </ul>
+      <div class="feedbacks__menu">
+        <a href="/news" class="button-standart news__link">Смотреть все</a>
+      </div>
+    </div>
+  </section>
+  <section class="feedbacks sections-animate">
+    <div class="feedbacks__wrapper container">
+      <h1 class="section__title small feedbacks__title">Отзывы пациентов</h1>
+      <div class="slider feedbacks__slider" data-js-slider>
+        <button class="slider__button prev" data-js-slider-button-prev><span class="visually-hidden">Предыдущее</span></button>
+        <ul class="slider__list double" data-js-slider-container data-js-feedback-list></ul>
+        <button class="slider__button next" data-js-slider-button-next><span class="visually-hidden">Следующее</span></button>
+      </div>
+      <div class="feedbacks__menu">
+        <a href="/comments" class="button-standart feedbacks__link">Смотреть все</a>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+{% block dialog_comments %}
+  <div class="support" data-js-support-modal>
+    <div class="support__wrapper container">
+      <button class="support__button close" data-js-support-modal-close>
+        <span class="visually-hidden">
+          ЗАКРЫТЬ ОКНО
+        </span>
+      </button>
+      <h2 class="section__title less support__title after">
+        Возникли вопросы?
+      </h2>
+      <a href="/feedback/form" class="button-standart feedback__full-show-button support__link">
+        Задать вопрос
+      </a>
+    </div>
+  </div>
+{% endblock %}
+{% block scripts %}
+  <script src="{% static "deps/scripts/feedback.js" %}"></script>
+  <script src="{% static "deps/scripts/feedbacksPlace.js" %}"></script>
+  <script src="{% static "deps/scripts/slider.js" %}"></script>
+  <script src="{% static "deps/scripts/support.js" %}"></script>
+{% endblock scripts %}

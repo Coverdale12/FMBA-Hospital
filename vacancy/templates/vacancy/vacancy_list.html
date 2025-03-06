@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Вакансии
+{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <div class="hero__wrapper container">
+      <h1 class="section__title middle background-border">Вакансии</h1>
+      <p class="section__subtitle less margin__block--2">
+        Мы приглашаем вас – молодых специалистов и профессионалов, любящих свою работу и неравнодушных к людям. Мы предлагаем интересную работу в дружном коллективе.
+      </p>
+<form method="get" class="form flex-row width--100">
+    <!-- Первая кнопка: Фильтр по типу отделения -->
+    <span class="visually-hidden">
+        <label for="department_type" class="form__label">Тип отделения:</label>
+    </span>
+    <select name="department_type" id="department_type" onchange="this.form.submit()" class="form__input select">
+        <option value="">Детское и взрослое</option>
+        <option value="children" {% if selected_department_type == 'children' %} selected {% endif %}>Детское </option>
+        <option value="adult" 
+        {% if selected_department_type == 'adult' %}
+        selected
+        {% endif %}>
+        Взрослое
+      </option>
+    </select>
+
+    <!-- Вторая кнопка: Фильтр по конкретному отделению -->
+    <span class="visually-hidden">
+        <label for="department" class="form__label">Фильтр по отделению:</label>
+    </span>
+    <select name="department" id="department" onchange="this.form.submit()" class="form__input select">
+        <option value="">Все отделения</option>
+        {% for department in filtered_departments %}
+            <option value="{{ department.id }}" {% if selected_department == department.id %}selected{% endif %}>
+                {{ department.name }}
+            </option>
+        {% endfor %}
+    </select>
+    <a href="/vacancies/" class="form__link text-decoration-none cross link-blog">
+      Сбросить все фильтры
+    </a>
+</form>
+      <ul class="news__list all-news margin__bottom--2">
+        {% for vacancy in vacancies %}
+        <li class="news__item">
+          <a href="{% url 'vacancy_detail' vacancy.pk %}" class="link-blog">
+          <article class="blog full no-grid for-icon chapter hover">
+            <div class="blog__body">
+              <h2 class="section__title blue">
+                {{ vacancy.specialty }}
+              </h2>
+              <p class="section__title less blue">
+                {{ vacancy.salary }}
+              </p>
+              {{ vacancy.department.name }}
+            </div>
+          </article>
+         </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+{% endblock %}

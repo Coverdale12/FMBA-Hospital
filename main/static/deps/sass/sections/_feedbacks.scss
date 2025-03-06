@@ -1,0 +1,53 @@
+.feedbacks{
+  background-color: $--color-gray-light;
+  font-family: $--font-family-base;
+  &.white-no-full{
+    background-color: transparent;
+    .feedbacks__wrapper.container{
+      background-color: $--color-light; 
+    }
+  }
+  &__wrapper.container{
+    background-color: transparent;
+  }
+  .button-standart.feedbacks__link{
+    width: fit-content;
+    margin-bottom: 10px;
+  }
+  &__menu{
+    @include flexible();
+    column-gap: 10px;
+    @media screen and (width < 500px){
+      @include flexible(column, left);
+      width: 100%;
+      .button-standart.feedbacks__link{
+        @include flexible($just-cont: center);
+        text-align: center;
+        width: 100%;
+      }
+    }
+  }// Ебануться таблица стилей
+  &__list.no-slider{
+    @include flexible(column);
+    width: 100%;
+    gap: 20px;
+    padding-bottom: 20px;
+    .slider__item{
+      width: 100%;
+    }
+  }
+  &__wrapper.container{
+    @include flexible(column, $al-items: center);
+    width: 100%;
+    border-inline: none;
+  }
+  &__title{
+    @include flexible(row, center, center);
+    width: 100%;
+    margin-top: 25px;
+    color: $--color-blue-dark;
+    &.margin{
+      margin-block: 20px;
+    }
+  }
+}

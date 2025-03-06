@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+  О поликлиннике
+{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <div class="hero__wrapper container">
+      <h1 class="section__title background-border middle">Тюменская больница Западно-Сибирского медицинского центра ФМБА России</h1>
+      <div class="section__subtitle">{{ page.content|safe }}</div>
+      {% if page.files.exists %}
+        <h2 class="section__title middle center background-border">Документы</h2>
+        <ul class="files__list">
+          {% for file in page.files.all %}
+            <li class="files__item">
+              <a href="{{ file.file.url }}" target="_blank" class="file">
+                {{ file.display_name|default:file.file.name }}<svg width="34" height="39" viewBox="0 0 34 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0 36.5C0 35.1193 1.11929 34 2.5 34H31.5C32.8807 34 34 35.1193 34 36.5C34 37.8807 32.8807 39 31.5 39H2.5C1.11929 39 0 37.8807 0 36.5Z" fill="#D9D9D9" />
+                  <path d="M16.5 37C15.1193 37 14 35.8807 14 34.5V2.5C14 1.11929 15.1193 0 16.5 0C17.8807 0 19 1.11929 19 2.5V34.5C19 35.8807 17.8807 37 16.5 37Z" fill="#D9D9D9" />
+                  <path d="M13.7678 37.1231C12.7915 36.1468 12.7915 34.5639 13.7678 33.5876L27.9099 19.4454C28.8862 18.4691 30.4691 18.4691 31.4454 19.4454C32.4217 20.4218 32.4217 22.0047 31.4454 22.981L17.3033 37.1231C16.327 38.0994 14.7441 38.0994 13.7678 37.1231Z" fill="#D9D9D9" />
+                  <path d="M1.88903 19.4454C2.86534 18.4691 4.44826 18.4691 5.42457 19.4454L19.5667 33.5876C20.543 34.5639 20.543 36.1468 19.5667 37.1231C18.5904 38.0994 17.0075 38.0994 16.0312 37.1231L1.88903 22.981C0.912722 22.0047 0.912722 20.4218 1.88903 19.4454Z" fill="#D9D9D9" />
+                </svg>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+  </section>
+{% endblock %}

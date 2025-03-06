@@ -1,0 +1,74 @@
+.aside {
+  $--top-unit: 1.3rem;
+  @include flexible(column, start);
+  width: 24rem;
+  font-family: $--font-family-base;
+  height: 100%;
+  float: left;
+  font-weight: 600;
+  &.no-100h{
+    height: auto;
+  }
+  &.vacancy{
+    padding: 0.6rem;
+  }
+  &__nav {
+    top: $--top-unit;
+    @include flexible();
+    width: 100%;
+    &.container {
+      background-color: transparent;
+    }
+    @media screen and (width < 800px) {
+      
+    }
+  }
+
+  &__list {
+    padding: 0.5rem;
+    @include flexible(column);
+    width: 100%;
+  }
+
+  &__item {
+    width: 100%;
+
+    &:last-of-type .aside__link {
+      border-bottom: 1px solid $--color-blue-dark;
+    }
+  }
+
+  &__link {
+    transition-duration: $--transition-duration;
+    @include hoverEffect(background-color, $--color-blue-light);
+    position: relative;
+    padding: 0.8rem;
+    @include flexible(row, start, center);
+    border: 1px solid $--color-blue-dark;
+    width: 100%;
+    text-decoration: none;
+    color: $--color-blue-dark;
+    font-size: 1.4rem;
+    font-weight: 600;
+    border-bottom: 0;
+    text-align: left;
+    background-color: $--color-gray-light;
+    padding-right: 3rem;
+
+    &::after {
+      position: absolute;
+      @include flexible();
+      content: "";
+      transform: rotate(90deg);
+      right: 1.2rem;
+      width: 0;
+      height: 0;
+      border-left: 0.6rem solid transparent;
+      border-right: 0.6rem solid transparent;
+      border-bottom: 0.8rem solid $--color-blue-dark;
+      transition-duration: $--transition-duration;
+    }
+
+    @include hoverEffect(transform, translateX(5px) rotate(90deg), after);
+  }
+}

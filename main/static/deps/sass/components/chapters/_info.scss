@@ -1,0 +1,97 @@
+.info {
+  @include flexible($just-cont: left, $al-items: start);
+  position: static;
+  font-weight: 500;
+  font-family: $--font-family-base;
+  color: $--color-dark;
+  font-size: var(--header-font-size);
+
+  &.header {
+    justify-content: center;
+    border-block: 0;
+  }
+
+  &.footer {
+    @include flexible($just-cont: left, $al-items: start);
+    position: static;
+
+    & .info__list {
+      align-items: start;
+      row-gap: 10px;
+    }
+
+    & .info__item--comment {
+      position: absolute;
+      bottom: 0;
+    }
+  }
+
+  &__list {
+    @include flexible(column, $al-items: center);
+  }
+
+  &__item {
+    @include flexible();
+    text-wrap: nowrap;
+  }
+
+  &__item.childs {
+    @include flexible();
+    column-gap: 10px;
+  }
+
+  &__item--comment {
+    color: $--color-gray;
+  }
+
+  &__link {
+    @include flexible();
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    margin-block: 5px;
+    color: $--color-blue-dark;
+    transition-duration: $--transition-duration;
+    @include hoverEffect(color, $--color-blue-dark-less);
+  }
+
+  &__link::before {
+    @include flexible();
+    margin-right: 10px;
+  }
+
+  &__link.nav::before {
+    content: url('/static/deps/icons/components/info/nav-icon.svg');
+  }
+
+  &__link.phone::before {
+    content: url('/static/deps/icons/components/info/tel-icon.svg');
+  }
+
+  &__link.time::before {
+    content: url('/static/deps/icons/components/info/time-icon.svg');
+  }
+
+  @media screen and (width < 1100px) {
+    &__list {
+      align-items: start;
+    }
+
+    &__item.childs {
+      @include flexible(column, $al-items: start);
+    }
+
+    &__item {
+      text-wrap: wrap;
+    }
+  }
+
+  @media screen and (width < 800px) {
+    order: 1;
+    width: 100%;
+
+    &.header {
+      justify-content: left;
+    }
+  }
+}

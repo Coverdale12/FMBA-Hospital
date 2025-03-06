@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Отзывы
+{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <div class="hero__wrapper container">
+      <h1 class="section__title background-border middle">Оставьте свой отзыв!</h1>
+      <p class="main-subtitle small">Ваши отзывы помогают нам понять, что для вас важно и как мы можем улучшить качество наших услуг с заботой о вас.</p>
+      <div class="hero__message">
+        {% if user.is_authenticated %}
+          <h2 class="main-title small">Заполните форму</h2>
+          <form method="post" class="form comments" data-js-form novalidate data-js-form-warning>
+            {% csrf_token %}
+            <div class="form__field">
+              <label for="content" class="form__label">Сожержимое отзыва:</label>
+              <span class="form__range-sym" data-js-form-field-count-sym></span>
+              <textarea name="content" required class="form__input" title="Отзыв не может быть пустой" minlength="10" maxlength="500"></textarea>
+              <span class="form__error" data-js-form-field-errors></span>
+            </div>
+            <div class="form__buttons">
+              <button type="submit" class="button-standart form-button">Добавить отзыв</button>
+              <button type="reset" class="button-standart form-button" data-js-form-reset>Очистить поле</button>
+            </div>
+          </form>
+        {% else %}
+          <p class="main-subtitle small hero__warning">
+            Чтобы добавить отзыв, <a href="/login">войдите</a> или <a href="/register">зарегистрируйтесь</a>.
+          </p>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if error_message %}
+      <div class="alert alert-danger">{{ error_message }}</div>
+    {% endif %}
+  </section>
+  <section class="feedbacks white-no-full">
+    <div class="feedbacks__wrapper container white">
+      <h1 class="feedbacks__title margin">Отзывы клиентов</h1>
+      <ul class="feedbacks__list no-slider">
+        {% if comments%}
+          {% for comment in comments %}
+          <li class="slider__item show" data-js-feedback="{{ comment.id }}">
+            <article class="feedback full">
+              <header class="feedback__header">
+                <h2 class="feedback__title">Отзыв</h2>
+                <time datetime="{{ comment.created_at }}" class="feedback__datetime">{{ comment.created_at.date }}</time>
+              </header>
+              <div class="feedback__body">
+                <p class="feedback__paragrapth no-control">{{ comment.content }}</p>
+                {% if comment.user != request.user %}
+                  <span class="feedback__name abs">{{ comment.user.username }}</span>
+                {% endif %}
+              </div>
+              <div class="feedback__menu">
+                {% if comment.user == request.user or request.user.is_superuser %}
+                  <a href="{% url 'edit_comment' comment.id %}" class="button-standart edit-button feedback-adaptive-button">Редактировать</a>
+                  <a href="{% url 'delete_comment' comment.id %}" class="button-standart delete-button feedback-adaptive-button" data-js-warning="Вы действительно хотите удалить отзыв?">Удалить</a>
+                {% endif %}
+              </div>
+            </article>
+          </li>
+          {% endfor %}
+        {% else %}
+          <li class="slider__item show" data-js-slide data-js-feedback="">
+          <article class="feedback no-feedback margin">
+            <h2 class="feedback__title">
+              Похоже пока что нет отзывов!
+            </h2>
+            <p class="feedback__subtitle">
+              Будьте первым)
+            </p>
+          </article>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </section>
+{% endblock %}
+
+{% block dialog_comments %}
+  <dialog class="modal warning" data-js-modal-warning-form>
+    <h2 class="modal__message" data-js-modal-message>Вы действительно хотите опубликовать свой отзыв?</h2>
+    <form method="dialog" class="modal__menu">
+      <button value="true" class="modal__button button-standart">Опубликовать</button>
+      <button value="false" class="modal__button button-standart">Отмена</button>
+    </form>
+  </dialog>
+  <dialog class="modal warning" data-js-modal-warning>
+    <h2 class="modal__message" data-js-modal-message></h2>
+    <form method="dialog" class="modal__menu">
+      <button value="true" class="modal__button button-standart delete-button">Удалить</button>
+      <button value="false" class="modal__button button-standart">Отмена</button>
+    </form>
+  </dialog>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{% static 'deps/scripts/rangeElement.js' %}"></script>
+  <script src="{% static 'deps/scripts/modals.js' %}"></script>
+  <script src="{% static 'deps/scripts/FormValidation.js' %}"></script>
+{% endblock %}

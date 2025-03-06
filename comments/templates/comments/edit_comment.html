@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Изменение отзыва
+{% endblock %}
+{% block content %}
+  <section class="hero">
+    <div class="hero__wrapper container transparent">
+      <form method="post" class="form login edit-comment" novalidate data-js-form data-js-form-warning>
+        <h1 class="form__title center section__title less">Редактировать комментарий</h1>
+        {% csrf_token %}
+        <div class="form__field top">
+          <label for="content" class="form__label center">Редактировать содержимое отзыва:</label>
+          <span class="form__range-sym" data-js-form-field-count-sym></span>
+          <textarea name="content" required class="form__input" title="Отзыв не может быть пустой" minlength="10" maxlength="500">{{ comment.content }}</textarea>
+          <span class="form__error" data-js-form-field-errors></span>
+        </div>
+        <div class="form__buttons">
+          <button type="submit" class="button-standart login-button">Сохранить изменения</button>
+          <a href="{% url 'comments' %}" class="button-standart login-button">Назад к комментариям</a>
+        </div>
+      </form>
+    </div>
+  </section>
+{% endblock %}
+{% block dialog_comments %}
+  <dialog class="modal warning" data-js-modal-warning-form>
+    <h2 class="modal__message" data-js-modal-message>Сохранить изменения?</h2>
+    <form method="dialog" class="modal__menu">
+      <button value="true" class="modal__button button-standart save-button">Сохранить</button>
+      <button value="false" class="modal__button button-standart">Отмена</button>
+    </form>
+  </dialog>
+{% endblock %}
+{% block scripts %}
+  <script src="{% static 'deps/scripts/FormValidation.js' %}"></script>
+  <script src="{% static 'deps/scripts/modals.js' %}"></script>
+  <script src="{% static 'deps/scripts/rangeElement.js' %}"></script>
+{% endblock %}

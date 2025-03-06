@@ -1,0 +1,61 @@
+.hero{
+  @include flexible();
+  &__wrapper{
+    @include flexible(column, center, center);
+    background-color: $--color-light;
+    width: 100%;
+    &.transparent{
+      background-color: transparent;
+    }
+    &.container.no-pad{
+      padding-inline: 0;
+    }
+    &.flex-row{
+      @include flexible(row, center, start);
+      padding-top: 2rem;
+    }
+  }
+  &__wrapper.container.padding{
+    padding-inline: 10px;
+  }
+  &__link{
+    font-family: $--font-family-base;
+    width: fit-content;
+    margin: 10px;
+    margin-top: 40px;
+    &.address{
+      width: 100%;
+      font-size: 20px;
+      color: $--color-blue-dark;
+      text-decoration: none;
+    }
+  }
+  &__message{
+    @include flexible(column);
+    width: 100%;
+    padding: 20px;
+    padding-top: 5px;
+    background-color: $--color-blue-light;
+    border-radius: 12px;
+    margin-top: 20px;
+    @media screen and (width < 500px){
+      padding: min-max-auto(10, 20, 500);
+    }
+  }
+  &__warning{
+    color: $--color-blue-dark-less;
+    font-weight: 600;
+    text-align: left;
+    display: inline;
+    a{
+      color: $--color-blue-dark;
+      text-decoration: underline;
+      transition-duration: $--transition-duration;
+      @include hoverEffect(color, $--color-blue-dark-less);
+      @include hoverEffect(text-decoration, none);
+    }
+  }
+  div:empty{
+    height: 0;
+  }
+}

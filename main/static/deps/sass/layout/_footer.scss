@@ -1,0 +1,29 @@
+.footer{
+  width: 100%;
+  position: relative;
+  background-color: $--color-gray-light;
+  font-size: var(--footer-font-size);
+  &__wrapper.container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-block: 40px 80px;
+    padding-inline: 30px;
+    background-color: transparent;
+  }
+  @media screen and (width < 1300px){
+    font-size: min-max-auto(1.1, $--footer-font-size, 81.25, rem);
+  }
+  @media screen and (width < 1000px){
+    &__wrapper.container{
+      margin-block: 20px 60px;
+      flex-direction: column;
+    }
+  }
+  @media screen and (width < 700px){
+    &__wrapper.container{
+      margin-block: 10px 30px;
+      row-gap: 10px;
+    }
+  }
+}

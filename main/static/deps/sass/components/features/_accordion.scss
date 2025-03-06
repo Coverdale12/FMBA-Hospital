@@ -1,0 +1,27 @@
+.accordion{
+  font-family: $--font-family-base;
+  text-align: left;
+  width: 100%;
+  &__title{
+    text-align: left;
+    background-color: $--color-blue-light;
+    font-size: 24px;
+    font-weight: 500;
+    padding-inline: 20px;
+    color: $--color-blue-dark-less;
+    &::marker{
+      @include flexible();
+      font-size: 35px;
+      color: $--color-blue-dark-less;
+    }
+  }
+  &__list{
+    list-style-type: circle;
+  }
+  &__item{
+    font-size: 24px;
+    a {
+      text-decoration: none;
+    }
+  }
+}

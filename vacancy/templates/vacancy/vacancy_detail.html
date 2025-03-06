@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  {{ vacancy.specialty }}
+{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <div class="hero__wrapper container">
+      <h1 class="section__title middle background-border">{{ vacancy.specialty }}</h1>
+      <div class="section__subtitle less align__left width--100">
+        <aside class="aside no-100h vacancy">
+          <a href="{% url 'vacancy_list' %}" class="button-standart slide__link fit-content margin__bottom--2">К списку вакансий</a>
+          <p class="section__subtitle less align__left width--100">Зарплата: от <span class="section__title blue">{{ vacancy.salary }}</span> руб.</p>
+          <p class="section__subtitle less align__left width--100">Отделение: <span class="section__title blue">{{ vacancy.department.name }}</span></p>
+          <p class="section__subtitle less align__left width--100">Контактная информация:</p>
+          <div>{{ vacancy.contact_info|safe }}</div>
+        </aside><h2 class="section__title middle center margin__block--2">Информация</h2>{{ vacancy.information }}
+      </div>
+    </div>
+  </section>
+{% endblock %}

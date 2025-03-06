@@ -1,0 +1,55 @@
+.shedule{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-size: 20px;
+  &__title{
+    margin-block: 20px;
+  }
+  &__table{
+    margin-inline: auto;
+    border-radius: 5px;
+    border: 0;
+  }
+  &__thead{
+    color: $--color-light;
+    font-weight: 700;
+    .shedule__row .shedule__element{
+      background-color: $--color-turquoise-less;
+      padding: 10px;
+      font-size: 24px;
+      &::after{
+        content: ":";
+      }
+    }
+  }
+  &__row{
+    padding: 40px;
+  }
+  &__element{
+    padding: 20px;
+    text-align: center;
+    border: 1px solid $--color-blue-dark-less;
+    border-radius: 10px;
+    &.week-day{
+      text-align: left;
+    }
+    & time{
+      font-size: 25px;
+      font-weight: 600;
+      color: $--color-blue-dark-less;
+    }
+  }
+  @media screen and (width < 700px){
+  &__table{
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    flex-direction: column;
+    overflow-x: scroll;
+  }
+  &__element{
+    min-width: 200px;
+  }
+}
+}

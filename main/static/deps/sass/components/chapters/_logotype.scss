@@ -1,0 +1,37 @@
+.logotype{
+  @include flexible($al-items: center);
+  text-decoration: none;
+  min-width: 270px;
+  &__image{
+    @include flexible();
+    flex-shrink: 0;
+  }
+  &__subtitle{
+    @include flexible(column);
+    font-size: 8px;
+    color: $--color-dark;
+  }
+  &__subtitle--large{
+    font-size: 10px;
+  }
+  &__title{
+    color: $--color-red;
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+}
+@media screen and (width < 800px){
+  .logotype{
+    @include flexible($al-items: start);
+    max-width: 220px;
+    padding-top: 0;
+    img{
+      max-width: 70px; 
+      height: auto; 
+      width: auto;
+    }
+    &__title{
+      font-size: min-max-auto(10, 16, 800);
+    }
+  }
+}

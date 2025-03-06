@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+  {{title}}
+{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <div class="hero__wrapper container">
+      <h1 class="section__title background-border middle">Новости</h1>
+    </div>
+  </section>
+  <section class="news">
+    <div class="news__wrapper container">
+      <article class="blog full-content no-border">
+        <header class="blog__header">
+          {% if news_item.image %}
+            <img src="{{ news_item.image.url }}" alt="{{ news_item.title }}" class="blog__image full main-news border-rad" />
+          {% else %}
+            <img src="{% static 'deps/images/news/news-placeholder.png' %}" alt="Новость" class="blog__image full main-news placeholder border-rad" />
+          {% endif %}
+          <h2 class="main-title big no-back left height-full">{{ news_item.title }}</h2>
+        </header>
+        <div class="size-text-element" data-js-size-text="control">
+          <label class="size-text-element__label">
+            Размер текста: 
+            <output class="size-text-element__size" data-js-size-text-output>
+              35%
+            </output>
+          </label>
+          <input type="range" class="size-text-element__input" value="35" id="sizeInputElement" data-js-size-text-input>
+        </div>
+        <div class="blog__body full no-border pad-adaptive" data-js-size-text="text">
+          {{ news_item.content|safe}}
+        </div>
+        <time datetime="{{ news_item.created_at }}" class="blog__datatime">{{ news_item.created_at.date }}</time>
+      </article>
+    </div>
+  </section>
+{% endblock %}
+{% block scripts %}
+  <script src="{% static "deps/scripts/sizeTextElement.js" %}"></script>
+{% endblock scripts %}
+

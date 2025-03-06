@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+  FMBA
+{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <div class="hero__wrapper container">
+      <h1 class="section__title background-border middle">Новости</h1>
+    </div>
+  </section>
+  <section class="news">
+    <div class="news__wrapper container">
+      <ul class="news__list all-news">
+        {% for news in news_items %}
+          <li class="news__item">
+            <article class="blog full">
+              {% if news.image %}
+                <img src="{{ news.image.url }}" alt="{{ news.title }}" class="blog__image full" />
+              {% else %}
+                <img src="{% static 'deps/images/news/news-placeholder.png' %}" alt="Новость" class="blog__image full" />
+              {% endif %}
+              <div class="blog__body">
+                <h2 class="blog__title section__title small">{{ news.title|truncatewords:10 }}</h2>
+                <div class="blog__content">
+                  {{ news.content|truncatewords:10|safe }}
+                </div>
+                <time datetime="{{ news.created_at }}" class="blog__datatime">{{ news.created_at.date }}</time>
+                <a href="{% url 'news_info' news.id %}" class="button-standart blog__link main abs over">Смотреть</a>
+              </div>
+            </article>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+{% endblock %}

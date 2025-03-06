@@ -1,0 +1,89 @@
+.support{
+  $--tooltype-width: 18.75rem;
+  $--z-index-element: 50;  
+  
+  transform: translateY($--tooltype-width);
+  transition: 1.5s transform ease-in;
+  width: 100%;
+  max-width: $--tooltype-width;
+  font-family: $--font-family-base;
+  background-color: $--color-light;
+  position: fixed;
+  border: 1px solid $--color-blue-dark;
+  bottom: 0;
+  right: 0;
+  height: fit-content;
+  color: $--color-blue-dark;
+  padding: 20px;
+  z-index: $--z-index-element;
+  &__wrapper{
+    @include flexible(column, center, center);
+    position: relative;
+    padding-top: 30px;
+    text-align: center;
+    height: 100%;
+    row-gap: 20px;
+  }
+  &__title{
+    @include flexible();
+    text-align: center;
+    font-size: 1.2rem;
+    &.after{
+      @include flexible(row-reverse, center, center);
+      column-gap: 0.2rem;
+    }
+    &.after::after{
+      @include flexible();
+      content: "";
+      background: url('/static/deps/images/components/doctor-help-image.jpg') center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 5rem;
+      height: 5rem;
+      border-radius: 50%;
+    }
+  }
+  &__link{
+    padding-block: 4px;
+  }
+  &__button.close{
+    cursor: pointer;
+    position: absolute;
+    right: -20px;
+    top: -20px;
+    @include flexible(column, center, center);
+    width: 80px;
+    aspect-ratio: 1;
+    background-color: transparent;
+    border: none;
+    transition-duration: $--transition-duration;
+    &:hover{
+      @include hoverEffect(background-color, $--color-red-less, before);
+    }
+    &::before{
+      @include flexible(column, center, center);
+      content: "✖";
+      color: $--color-light;
+      background-color: $--color-red;
+      width: 30px;
+      aspect-ratio: 1;
+      font-size: 20px;
+      border-radius: 50%;
+    }
+  }
+  &.show{
+    transform: translateY(0);
+  }
+  &.hide{
+    transition: 1.5s transform ease-in, 
+      0.3s opacity ease-in;;
+    transform: translateY(-5000px);
+    opacity: 0;
+  }
+  @media screen and (width < 500px) {
+    min-width: 100%;
+    &__wrapper{
+      min-width: 100%;
+    }
+  }
+}

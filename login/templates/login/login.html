@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Вход
+{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <div class="hero__wrapper container transparent">
+      {% if user.is_authenticated %}
+        <form method="post" action="{% url 'logout' %}" class="form login edit-comment">
+          <h1 class="form__title">Аккаунт</h1>
+          <label class="form__label margin center">Вы уже автовизированны под именем {{ user.username }}, хотите выйти?</label>
+          {% csrf_token %}
+          <button type="submit" class="button-standart login-button">Выйти</button>
+        </form>
+      {% else %}
+        <form method="post" class="form login" data-js-form novalidate>
+          {% csrf_token %}
+          {{ form.as_p }}
+          <h1 class="main-title small form__title">Авторизация</h1>
+          <div class="form__field">
+            <label for="username" class="form__label">Введите email</label>
+            <input type="text" name="username" required class="form__input" placeholder="email@example.com" />
+            <span class="form__error" data-js-form-field-errors></span>
+        </div>
+          <div class="form__field">
+            <label for="password" class="form__label">Введите пароль</label>
+            <input type="password" name="password" class="form__input" required />
+            <span class="form__error" data-js-form-field-errors></span>
+          </div>
+          {% if messages %}
+            {% for message in messages %}
+              {% if message == 'Регистрация прошла успешно!' %}
+                <span class="form__error center success"><span class="field__error">{{ message }}</span></span>
+              {% else %}
+                <span class="form__error center"><span class="field__error">{{ message }}</span></span>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+          <div class="form__buttons">
+            <button type="submit" class="button-standart login-button">Войти</button>
+          </div>
+          <div class="form__label">
+            Нет аккаунта?
+            <a href="{% url 'register' %}" class="form__link">Зарегистрируйтесь!</a>
+          </div>
+        </form>
+      {% endif %}
+    </div>
+  </section>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{% static 'deps/scripts/FormValidation.js' %}"></script>
+{% endblock %}

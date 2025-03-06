@@ -1,0 +1,173 @@
+.slider{
+  $--z-index-button-prev-next: 40;
+  
+  @include flexible(row, space-between, center);
+  position: relative;
+  margin-top: 50px;
+  border-inline: 30px solid $--color-turquoise;
+  width: 100%;
+  height: 21.875rem;
+  font-family: $--font-family-base;
+  &__list{
+    @include flexible($just-cont: space-between);
+    width: 100%;
+    overflow: hidden;
+    scroll-behavior: smooth;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    padding-inline: 70px;
+    z-index: 10;
+  }
+  &__item{
+    top: 0;
+    position: absolute;
+    display: flex;
+    pointer-events: none;
+    opacity: 0;
+    justify-content: center;
+    transform: translateX(-15px);
+    pointer-events: none;
+    width: 100%;
+    &.show{
+      position: static;
+      pointer-events: all;
+      transition: opacity 0.5s ease-in-out, transform 0.5s ease-out;
+      opacity: 1;
+      pointer-events: all;
+      transform: translateX(0);
+    }
+  }
+  &__button{
+    @include flexible(row, center, center);
+    @include buttonStandart();
+    position: absolute;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    outline: none;
+    width: 80px;
+    height: 160px;
+    aspect-ratio: 1;
+    padding: 10px;
+    z-index: $--z-index-button-prev-next;
+    &:hover{
+      @include hoverEffect(border-color, $--color-blue-dark-less, after);
+      @include hoverEffect(color, $--color-blue-dark-less, before);
+      @include hoverEffect(border-color, $--color-blue-dark-less, before);
+    }
+    &::after, &::before{
+      transition-duration: $--transition-duration;
+    }
+    &::after{
+      @include circle(2.813rem);
+      position: absolute;
+      content: "";
+      background-color: transparent;
+      border: 2px solid $--color-turquoise;
+      color: $--color-turquoise;
+    }
+    &::before{
+      position: absolute;
+      content: "";
+      @include size(0.625rem);
+      border-top: 2px solid;
+      border-right: 2px solid;
+      color: $--color-turquoise;
+    }
+  }
+  &__button.prev{
+    &::before{
+      transform: translateX(3px) rotate(-135deg);
+    }
+  }
+  &__button.next{
+    &::before{
+      transform: translateX(-2px) rotate(45deg)
+    }
+    right: 0;
+  }
+  .slide{
+    @include flexible($just-cont: space-between, $al-items: center);
+    width: 100%;
+    &__description{
+      @include flexible(column);
+      max-width: 400px;
+    }
+    &__title{
+      color: $--color-blue-dark;
+    }
+    &__link{
+      margin-top: 20px;
+      width: fit-content;
+    }
+    &__image{
+      width: 500px;
+      height: 21.875rem;
+      object-fit: contain;
+    }
+    &__image.jpg{
+      height: auto
+    }
+    &__image.jpg.big{
+      width: 600px;
+      height: auto
+    }
+  }
+}
+.slider.feedbacks__slider{
+  border-inline: none;
+  margin-top: 0;
+}
+@media screen and (width < 1300px){
+  .slider{
+    border-inline-width: 5px;
+    .slide{
+      &__image{
+        width: min-max-auto(300, 500, 1300);
+      }
+    }
+  }
+}
+@media screen and (width < 800px){
+  .slider{
+    height: auto;
+    padding-block: 20px;
+    min-height: clamp(200px, 33.0vh, 600px);
+    &__list{
+      padding-inline: min-max-auto(40, 70, 800);
+    }
+    &__item{
+      .slide{
+        @include flexible(column-reverse, $al-items: start);
+        &__image, 
+        &__image.jpg,
+        &__image.jpg.big{
+          width: 500px;
+          height: auto;
+        }
+      }
+      .slide.reverse{
+        flex-direction: column;
+      }
+    }
+    &__button.prev{
+      left: -18px;
+    }
+    &__button.next{
+      right: -18px;
+    }
+    .slide{
+      &__image, 
+      &__image.jpg,
+      &__image.jpg.big{
+        height: 300px;
+      }
+  }
+  }
+}
+@media screen and (width < 500px){
+  .slider__list{
+    padding-inline: 20px;
+  }
+}

@@ -1,0 +1,49 @@
+// Версия фронтенда
+$version: '1.0';
+/*
+  FMBA style version #{$version};
+*/
+@import 'imports';
+body{
+  @include flexible();
+  position: relative;
+  width: 100%;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  overflow-x: hidden;
+  height: 100%;
+}
+.content{
+  width: 100%;
+  background-image: none;
+  flex: 1 0 auto;
+}
+button{
+  transition-duration: $--transition-duration;
+}
+.link-blog{
+  text-decoration: none;
+  width: 100%;
+}
+.background-site{
+  z-index: -10;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("/static/deps/images/bg/background.jpg");
+  filter: blur(10px);
+  background-repeat: repeat-y;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+.container{
+  background-color: $--color-light;
+  margin-inline: auto;
+  padding-inline: $--container-padding-x;
+  max-width: $--container-width + ($--container-padding-x * 2); /*Получим ровно 1300px*/
+}
+html{
+  overflow-x: hidden;
+}

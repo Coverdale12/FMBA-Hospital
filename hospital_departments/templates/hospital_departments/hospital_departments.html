@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block title %}
+  Отделения больницы
+{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <div class="hero__wrapper container padding">
+      <h1 class="section__title background-border middle">Отделения</h1>
+    </div>
+  </section>
+  <section class="news">
+    <div class="news__wrapper container">
+      <ul class="news__list all-news">
+        <li class="news__item">
+          <a href="{% url 'department_list' 'adult' %}" class="link-blog">
+            <article class="blog full for-icon chapter hover">
+              <div class="blog__icon">
+                <svg width="100" height="120" viewBox="0 0 37 81" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 14C21.866 14 25 10.866 25 7C25 3.13401 21.866 0 18 0C14.134 0 11 3.13401 11 7C11 10.866 14.134 14 18 14Z" fill="#03045E"/>
+                  <path d="M36.0529 46.4L31.3529 22.8C29.4529 20.7 27.0529 19.1 24.2529 18.1C22.3529 17.4 20.2529 17 18.0529 17C15.8529 17 13.8529 17.4 11.8529 18.1C9.15288 19.1 6.75288 20.7 4.75288 22.8L0.0528837 46.4C-0.247116 48 0.752883 49.6 2.45288 49.9C2.65288 49.9 2.85288 50 3.05288 50C4.45288 50 5.75288 49 5.95288 47.6L10.1529 27.3V81H16.1529V50H20.1529V81H26.1529V27.3L30.2529 47.6C30.4529 49 31.7529 50 33.1529 50C33.3529 50 33.5529 50 33.7529 49.9C35.3529 49.6 36.4529 48 36.0529 46.4Z" fill="#03045E"/>
+                </svg>                                  
+              </div>
+              <div class="blog__body none-border-right">
+                <h2 class="blog__title main-title small left no-back over">Взрослая больница</h2>
+                <p class="blog__content">Отделение в больнице предназначенное для совершеннолетних граждан</p>
+              </div>
+            </article>
+          </a>
+        </li>
+        <li class="news__item">
+          <a href="{% url 'department_list' 'children' %}" class="link-blog">
+            <article class="blog full for-icon chapter hover">
+              <div class="blog__icon">
+                <svg width="107" height="120" viewBox="0 0 57 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18.1529 14C22.0189 14 25.1529 10.866 25.1529 7C25.1529 3.13401 22.0189 0 18.1529 0C14.2869 0 11.1529 3.13401 11.1529 7C11.1529 10.866 14.2869 14 18.1529 14Z" fill="#03045E"/>
+                  <path d="M36.0529 45.4L31.3529 21.8C29.4529 19.7 27.0529 18.1 24.2529 17.1C22.3529 16.4 20.2529 16 18.0529 16C15.8529 16 13.8529 16.4 11.8529 17.1C9.15288 18.1 6.75288 19.7 4.75288 21.8L0.0528837 45.4C-0.247116 47 0.752883 48.6 2.45288 48.9C2.65288 48.9 2.85288 49 3.05288 49C4.45288 49 5.75288 48 5.95288 46.6L10.1529 26.3V80H16.1529V49H20.1529V80H26.1529V26.3L30.2529 46.6C30.4529 48 31.7529 49 33.1529 49C33.3529 49 33.5529 49 33.7529 48.9C35.3529 48.6 36.4529 47 36.0529 45.4Z" fill="#03045E"/>
+                  <path d="M45.1529 53C47.9143 53 50.1529 50.7614 50.1529 48C50.1529 45.2386 47.9143 43 45.1529 43C42.3915 43 40.1529 45.2386 40.1529 48C40.1529 50.7614 42.3915 53 45.1529 53Z" fill="#03045E"/>
+                  <path d="M55.9529 66.2L52.4529 57.8C51.2529 56.1 49.3529 54.8 47.2529 54.2C46.6529 54.1 45.8529 54 45.1529 54H40.1529L34.8529 45C34.2529 44 33.0529 43.7 32.1529 44.3C31.1529 44.9 30.8529 46.1 31.4529 47L40.1529 61.8V80H44.1529V68H46.1529V80H50.1529V62.6L52.3529 67.8C52.6529 68.6 53.4529 69 54.1529 69C54.4529 69 54.6529 69 54.9529 68.8C55.9529 68.4 56.4529 67.2 55.9529 66.2Z" fill="#03045E"/>
+                </svg>                  
+              </div>
+              <div class="blog__body none-border-right">
+                <h2 class="blog__title main-title small left no-back over">Детская больница</h2>
+                <p class="blog__content">Отделение в больнице предназначенное для несовершеннолетних граждан</p>
+              </div>
+            </article>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+{% endblock %}

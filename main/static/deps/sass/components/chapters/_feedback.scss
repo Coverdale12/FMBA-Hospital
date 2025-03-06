@@ -1,0 +1,158 @@
+.feedback{
+  @include flexible(column, $al-items: center);
+  position: relative;
+  width: 500px;
+  background-color: $--color-light;
+  &.full{
+    width: 100%;
+    align-items: start;
+    border: 2px $--color-turquoise-less solid;
+    position: relative;
+    box-shadow: 1px 1px 5px $--color-turquoise;
+  }
+  &.no-feedback{
+    width: 100%;
+    background-color: transparent;
+    font-size: 25px;
+    color: $--color-blue-dark;
+    text-align: center;
+    &.margin{
+      margin-block: 80px;
+    }
+    &__title{
+      font-size: 21px;
+    }
+  }
+  &__header{
+    @include flexible(row, $al-items: center);
+    position: relative;
+    width: 100%;
+    background-color: $--color-turquoise;
+    color: $--color-light;
+    height: 65px;
+    &__title{
+      @include flexible($just-cont: center, $al-items: center);
+      font-size: 24px;
+    }
+    &::before{
+      @include flexible(column, center, center);
+      content: url("/static/deps/icons/components/feedback/feedback-icon.svg");
+      width: 65px;
+      aspect-ratio: 1;
+      color: $--color-light;
+      margin-right: 10px;
+    }
+  }
+  &__datetime{
+    @include flexible();
+    position: absolute;
+    right: 30px;
+    font-size: 1.2rem;
+  }
+  &__body{
+    @include flexible(column);
+    position: relative;
+    font-size: 20px;
+    color: $--color-turquoise;
+    margin-left: 50px;
+    margin-top: 15px;
+    font-size: 1.2rem;
+    height: 150px;
+    &::before{
+      position: absolute;
+      left: -30px;
+      content: url("/static/deps/icons/components/feedback/feedback-body-before-icon.svg");
+    }
+  }
+  &__paragrapth{
+    width: 400px;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    &.show-all{
+      overflow-x: auto;
+      text-wrap: wrap;
+    }
+  }
+  &__paragrapth.no-control{
+    @include flexible();
+    width: 100%;
+    text-wrap: wrap;
+    text-overflow: ellipsis;
+    height: fit-content;
+  }
+  &__name{
+    @include flexible();
+    font-style: italic;
+    font-weight: bold;
+  }
+  &__menu{
+    @include flexible($just-cont: end);
+    width: 100%;
+    column-gap: 20px;
+    padding: 5px;
+  }
+  .button-standart.feedback__full-show-button{
+    @include flexible($just-cont: center);
+    width: auto;
+    margin: 0;
+    padding: 0;
+    width: 280px;
+    font-weight: 400;
+    margin-block: 10px;
+  }
+  .feedback-adaptive-button{
+    padding: 2px 20px;
+  }
+  @media screen and (width < 700px){
+    &__body{
+      margin-left: 10px;
+      margin-top: 10px;
+      position: static;
+    }
+    &__name.abs{
+      @include flexible();
+      font-style: italic;
+      font-weight: bold;
+      bottom: 10px;
+      right: 10px;
+      position: absolute;
+      z-index: 0;
+    }
+    &__menu{
+      justify-content: start;
+    }
+    &__paragrapth{
+      width: min-max-auto(250, 400, 700);
+      padding-inline: 10px;
+    }
+    &.full{
+      .feedback__body::before{
+        display: none;
+      }
+    }
+  }
+  @media screen and (width < 500px){
+    .feedback__header::before{
+      display: none;
+      margin-left: 10px;
+    }
+    .feedback__header{
+      padding-left: 10px;
+    }
+    &__title{
+      font-size: 21px;
+    }
+    .feedback__menu{
+      @include flexible(column, $al-items: center);
+      width: 100%;
+      row-gap: 10px;
+      .feedback-adaptive-button{
+        width: 100%;
+        padding-block: 10px;
+        @include flexible(row);
+        z-index: 10;
+      }
+    }
+  }
+}

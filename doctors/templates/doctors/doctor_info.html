@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+  {{ title }}
+{% endblock %}
+
+{% block content %}
+  <section class="doctors">
+    <div class="doctors__wrapper container border">
+      <h1 class="section__title background-border middle">Страница врача</h1>
+      <div class="doctors__buttons">
+        <a href="/doctors" class="button-standart doctor__button shedule doctors__link">
+          Ко всем врачам больницы
+        </a>
+        <a href="/departments/info/{{doctor.department.id}}" class="button-standart doctor__button shedule doctors__link">
+          К отделению врача
+        </a>
+      </div>
+      <article class="doctor no-pad-700">
+        <img src="{{ doctor.photo.url }}" alt="Специалист {{ doctor.first_name }}" class="doctor__image full" />
+        <div class="doctor__body left">
+          <h2 class="doctor__fullname main-title middle no-back left no-pad">{{ doctor.first_name }} {{ doctor.last_name }} {{ doctor.middle_name }}</h2>
+          <p class="main-title small no-back doctor__specialty left no-pad">{{ doctor.specialty }}</p>
+          <p class="doctor__location">{{ doctor.location }}</p>
+          <p class="doctor__description">{{ doctor.description|safe }}</p>
+        </div>
+      </article>
+      <div class="shedule">
+        <h3 class="main-title small no-back shedule__title">Расписание специалиста</h3>
+        <table class="shedule__table">
+          <thead class="shedule__thead">
+            <tr class="shedule__row">
+              <td class="shedule__element">День недели</td>
+              <td class="shedule__element">Начало приёма</td>
+              <td class="shedule__element">Конец приёма</td>
+              <td class="shedule__element">Примечания</td>
+            </tr>
+          </thead>
+          <tbody class="shedule__tbody">
+            {% for schedule in doctor.schedules.all %}
+              <tr class="shedule__row">
+                <td class="shedule__element week-day">{{ schedule.get_day_of_week_display }}</td>
+                <td class="shedule__element">
+                  <time datetime="{{ schedule.start_time }}">{{ schedule.start_time }}</time>
+                </td>
+                <td class="shedule__element">
+                  <time datetime="{{ schedule.end_time }}">{{ schedule.end_time }}</time>
+                </td>
+                <td class="shedule__element"></td>
+              </tr>
+            {% empty %}
+              <tr class="shedule__row">
+                <td class="shedule__element error">Нет доступного расписания!</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

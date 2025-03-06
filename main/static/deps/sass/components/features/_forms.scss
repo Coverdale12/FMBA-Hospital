@@ -1,0 +1,216 @@
+.form {
+  font-family: $--font-family-base;
+
+  &.flex-row {
+    @include flexible();
+    column-gap: 1rem;
+    font-size: 1.3rem;
+
+    @media screen and (width < 700px) {
+      &.flex-row {
+        @include flexible(column);
+        row-gap: 0.5rem;
+      }
+    }
+  }
+
+  &.width--100 {
+    width: 100%;
+  }
+
+  &.comments {
+    @include flexible(column, $al-items: center);
+    font-family: $--font-family-base;
+    font-size: 24px;
+    width: 100%;
+    row-gap: 20px;
+  }
+
+  &.login {
+    @include flexible(column, $al-items: center);
+    border-radius: 20px;
+    background-color: $--color-gray-light;
+    font-family: $--font-family-base;
+    max-width: 400px;
+    width: 100%;
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid $--color-blue-dark-less;
+
+    .button-standart.login-button {
+      width: fit-content;
+      padding: 5px 20px;
+      font-size: 20px;
+    }
+  }
+
+  &.registration {
+    max-width: 500px;
+  }
+
+  &.form &.edit-comment {
+    max-width: 550px;
+
+    .form__buttons {
+      @include flexible(column, $al-items: center);
+      row-gap: 10px;
+
+      & .button-standart.login-button {
+        width: 100%;
+      }
+    }
+  }
+
+  &__input {
+    @include flexible();
+    width: 100%;
+    resize: vertical;
+    border: 1px solid $--color-blue-dark-less;
+    border-radius: 10px;
+    padding: 10px;
+    font-weight: 500;
+
+    &.select {
+      transition-duration: $--transition-duration;
+      background-color: $--color-gray-light;
+      color: $--color-blue-dark-less;
+      width: 100%;
+      @include hoverEffect(color, $--color-blue-dark);
+      @include hoverEffect(background-color, $--color-light);
+    }
+
+    &.file {
+      border: none;
+
+      /*стили тут*/
+    }
+  }
+
+  &__field {
+    position: relative;
+    width: 100%;
+
+    &.top {
+      margin-top: 20px;
+    }
+  }
+
+  &__title {
+    background-color: transparent;
+    color: $--color-blue-dark;
+  }
+
+  &__range-sym {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: $--color-blue-dark;
+
+    @media screen and (width < 500px) {
+      display: none;
+    }
+  }
+
+  &__menu {
+    @include flexible(column);
+  }
+
+  &__error {
+    @include flexible(column);
+    color: $--color-red;
+    min-height: 18px;
+
+    &.center {
+      @include flexible(row, start, start);
+      margin-bottom: 10px;
+      text-align: left;
+      width: 100%;
+
+      .field__error {
+        font-size: 16px;
+      }
+    }
+
+    &.success {
+      color: $--color-green;
+    }
+
+    .field__error {
+      font-size: 16px;
+    }
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  &__buttons {
+    @include flexible(row);
+    column-gap: 20px;
+
+    @media screen and (width < 500px) {
+      @include flexible(column);
+      row-gap: 10px;
+
+      .button-standart.form-button {
+        width: 100%;
+      }
+    }
+  }
+
+  &__label {
+    @include flexible();
+    width: 100%;
+    column-gap: 7px;
+    font-weight: 400;
+    color: $--color-blue-dark-less;
+
+    &.margin {
+      margin-block: 20px;
+    }
+  }
+
+  &__link {
+    @include flexible(row, $al-items:center);
+    column-gap: 0.5rem;
+    text-decoration: none;
+    color: $--color-blue-dark-less;
+    text-decoration: underline;
+    transition-duration: $--transition-duration;
+
+    @media (hover: hover) {
+      &:hover {
+        color: $--color-blue-dark;
+      }
+    }
+
+    @media (hover: none) {
+      &:active {
+        color: $--color-blue-dark;
+      }
+    }
+
+    &.text-decoration-none {
+      text-decoration: none;
+    }
+
+    &.cross::before {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: nowrap;
+      flex-direction: column;
+      content: "✖";
+      background-color: transparent;
+      color: #E60000;
+      width: 2rem;
+      height: 2rem;
+      font-size: 2rem;
+      border-radius: 50%;
+    }
+  }
+
+  .form-button {
+    width: fit-content;
+  }
+}

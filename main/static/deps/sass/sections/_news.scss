@@ -1,0 +1,50 @@
+.news{
+  font-family: $--font-family-base;
+  background-color: transparent;
+  &__wrapper{
+    @include flexible(column, $al-items: center);
+    padding-bottom: 15px;
+    @media screen and (width < 850px){
+      &.container{padding-inline: 5px;}
+    }
+  }
+  &__list{
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    @media screen and (width < 1000px){
+      grid-template-columns: repeat(2, 1fr);
+      width: 100%;
+      padding-inline: 10px;
+    }
+    @media screen and (width < 700px){
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+  &__list.all-news{
+    @include flexible(column);
+    gap: 10px;
+    width: 100%;
+    padding-top: 20px;
+  }
+  .button-standart.blog__link.main.abs{
+    position: absolute;
+    bottom: 10px;
+  }
+  &__item{
+    @include flexible(column, center, center)
+  }
+  &__title{
+    margin-block: 40px;
+    color: $--color-blue-dark;
+    font-weight: 500;
+    @media screen and (width < 800px) {
+      margin-block: 20px;
+    }
+  }
+  &__link{
+    @include flexible($just-cont: center);
+    margin-top: 10px;
+    text-align: center;
+  }
+}

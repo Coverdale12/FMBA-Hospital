@@ -1,0 +1,57 @@
+// Импортируем основные стили
+@import 'core/typography';
+@import 'core/reset';
+
+
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+@import 'abstracts/functions';
+@import 'abstracts/utils';
+// Импортируем компоненты
+
+@import 'components/texts';
+// Модалки
+@import 'components/modals/modals';
+
+// Таблицы
+@import 'components/tables/shedule';
+
+// Тултипы и прочая всплывающая залупа
+@import 'components/tooltype/support';
+
+//Части лайаута
+@import 'components/chapters/feedback';
+@import 'components/chapters/info';
+@import 'components/chapters/logotype';
+@import 'components/chapters/social';
+// Кнопки
+@import 'components/buttons/buttons';
+//Фичи
+@import 'components/features/navigation';
+@import 'components/features/accordion';
+@import 'components/features/sizeTextElement';
+@import 'components/features/forms';
+@import 'components/features/slider';
+@import 'components/features/files';
+// Импортируем стили для макета
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/blog';
+@import 'layout/doctor';
+@import 'layout/aside';
+
+// Импортируем стили для страниц
+@import 'pages/index';
+@import 'pages/comments';
+
+// Импортируем секции
+@import 'sections/maindoctor';
+@import 'sections/hero';
+@import 'sections/feedbacks';
+@import 'sections/news';
+@import 'sections/doctors';
+@import 'sections/services';
+// Импортируем анимации
+@import 'animations/sections-animate';
+
+@import url("./modals.css");

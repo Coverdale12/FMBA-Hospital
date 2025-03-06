@@ -1,0 +1,242 @@
+.main-title{
+  @include flexible(column);
+  font-family: $--font-family-base;
+  color: $--color-blue-dark;
+  background-color: $--color-blue-light;
+  padding-block: 10px;
+  width: 100%;
+  text-align: center;
+  &.small{
+    font-size: 36px;
+  }
+  &.middle{
+    font-size: 40px;
+  }
+  &.big{
+    font-size: 48px;
+  }
+  &.border{
+    border-radius: 10px;
+    margin-inline: 15px;
+  }
+  &.no-back{
+    background-color: transparent;
+  }
+  &.left{
+    text-align: left;
+    justify-content: start;
+    align-items: start;
+  }
+  &.no-mar{
+    margin-inline: 0; 
+  }
+  &.no-pad{
+    padding-block: 0;
+  }
+  &.height-full{
+    max-height: 100%;
+  }
+  &.full-width{
+    width: 100%;
+  }
+  &.mar-top{
+    margin-top: 30px;
+  }
+}
+.main-subtitle{
+  @include flexible(column);
+  font-family: $--font-family-base;
+  color: $--color-blue-dark-less;
+  text-align: center;
+  &.small{
+    font-size: 30px;
+    margin-top: 10px;
+  }
+  &.weight{
+    &.bold{
+      font-weight: bold;
+    }
+  }
+  &.padding{
+    &.top{
+      padding-top: 15px;
+    }
+    &.bottom{
+      padding-bottom: 60px;
+    }
+  }
+  &.middle{
+    font-size: 36px;
+  }
+  &.left{
+    align-items: start;
+    text-align: left;
+  }
+  &.full-width{
+    width: 100%;
+  }
+}
+.section__title{
+  font-family: $--font-family-base;
+  $--z-index-element: 10;
+  z-index: $--z-index-element;
+  &.blue{
+    color: $--color-blue-dark;
+  }
+  &.less{
+    font-size: 1.6rem;
+  }
+  &.small{
+    font-size: 2rem;
+  }
+  &.middle{
+    font-size: 2.4rem;
+  }
+  &.big{
+    font-size: 2.8rem;
+  }
+  &.huge{
+    font-size: 3.2rem;
+  }
+  &.center{
+    text-align: center;
+  }
+  &.background-border{
+    --indents: 0.625rem;
+    @include flexible(column, center, center);
+    color: $--color-blue-dark;
+    background-color: $--color-blue-light;
+    width: 100%;
+    text-align: center;
+    border-radius: var(--indents);
+    padding-block: var(--indents);
+    margin-block: var(--indents);
+  }
+  @media screen and (width < 1300px){
+    &.less{
+      font-size: min-max-auto(1.3, 1.6, 81.25, rem);
+    }
+    &.small{
+      font-size: min-max-auto(1.6, 2, 81.25, rem);
+    }
+    &.middle{
+      font-size: min-max-auto(2, 2.4, 81.25, rem);
+    }
+    &.big{
+      font-size: min-max-auto(2.4, 2.8, 81.25, rem);
+    }
+    &.huge{
+      font-size: min-max-auto(2.8, 3.2, 81.25, rem);
+    }
+  }
+  @media screen and (width < 800px){
+    hyphens: auto;
+    &.less{
+      font-size: min-max-auto(1.2, 1.3, 50, rem);
+    }
+    &.small{
+      font-size: min-max-auto(1.5, 1.6, 50, rem);
+    }
+    &.middle{
+      font-size: min-max-auto(1.85, 2, 50, rem);
+    }
+    &.big{
+      font-size: min-max-auto(2.25, 2.4, 50, rem);
+    }
+    &.huge{
+      font-size: min-max-auto(2.6, 2.8, 50, rem);
+    }
+  }
+  // &.line-clamped-#{$--clamp: none}{
+  //   line-clamp: $--clamp;
+  // }
+}
+.section__subtitle{
+  font-family: $--font-family-base;
+  $--z-index-element: 10;
+  z-index: $--z-index-element;
+  color: $--color-blue-dark-less;
+  font-size: 1rem;
+  &.width--100{
+    width: 100%;
+  }
+  &.less{
+    font-size: 1.475rem;
+  }
+  &.small{
+    font-size: 1.675rem;
+  }
+  &.middle{
+    font-size: 1.875rem;
+  }
+  &.big{
+    font-size: 2.1rem;
+  }
+  &.huge{
+    font-size: 2.3rem;
+  }
+  &.align{
+    &__left{
+      text-align: left;
+    }
+    &__center{
+      text-align: center;
+    }
+    &__right{
+      text-align: right;
+    }
+  }
+}
+@media screen and (width < 1300px) {
+  .main-title{
+    &.small{
+      font-size: min-max-auto(30, 36, 1300);
+    }
+    &.middle{
+      font-size: min-max-auto(34, 40, 1300);
+    }
+    &.big{
+      font-size: min-max-auto(42, 48, 1300);
+    }
+    &.border{
+      border-radius: min-max-auto(8, 10, 1300);
+      margin-inline: 15px;
+    }
+  }
+  .main-subtitle{
+    &.small{
+      font-size: min-max-auto(26, 30, 1300);
+      margin-top: 10px;
+    }
+    &.middle{
+      font-size: min-max-auto(30, 36, 1300);
+    }
+  }
+}
+@media screen and (width < 800px) {
+  .main-title{
+    &.small{
+      font-size: min-max-auto(26, 30, 800);
+    }
+    &.middle{
+      font-size: min-max-auto(30, 34, 800);
+    }
+    &.big{
+      font-size: min-max-auto(38, 42, 800);
+    }
+    &.border{
+      border-radius: min-max-auto(6, 8, 800);
+      margin-inline: 15px;
+    }
+  }
+  .main-subtitle{
+    &.small{
+      font-size: min-max-auto(22, 26, 800);
+      margin-top: 10px;
+    }
+    &.middle{
+      font-size: min-max-auto(26, 30, 800);
+    }
+  }
+
+}

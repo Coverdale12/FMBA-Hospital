@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+  Обратная связь
+{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <div class="hero__wrapper container transparent">
+      <form method="post" enctype="multipart/form-data" class="form login registration" data-js-form>
+        {% csrf_token %}
+
+        {% if request.user.is_staff %}
+          <a href="/admin/feedback_form/feedback/" class="section__subtitle less">Перейти к списку обращений</a>
+        {% endif %}
+        <h1 class="main-title small form__title">Обратная связь</h1>
+        <p class="section__subtitle less margin__bottom--1">Опишите что вас волнует</p>
+        <div class="form__field">
+          <label for="full_name" class="form__label">Введите ФИО:</label>
+          <input type="text" name="full_name" maxlength="100" minlength="3" id="id_full_name" required class="form__input" />
+          <span class="form__error" data-js-form-field-errors id="id_firstname_helptext"></span>
+        </div>
+        <div class="form__field">
+          <label for="email" class="form__label">Введите адрес электронной почты:</label>
+          <input type="email" name="email" id="id_email" required class="form__input" pattern="^\S+@\S+\.\S+$" />
+          <span class="form__error" data-js-form-field-errors></span>
+        </div>
+        <div class="form__field">
+          <label for="id_subject" class="form__label">Тема обращения:</label>
+          <input type="text" name="subject" maxlength="100" minlength="3" id="id_subject" required class="form__input" />
+          <span class="form__error" data-js-form-field-errors id="id_firstname_helptext"></span>
+        </div>
+        <div class="form__field">
+          <label for="id_message" class="form__label">Содержание</label>
+          <textarea type="text" name="message" maxlength="500" minlength="3" id="id_subject" class="form__input"></textarea>
+          <span class="form__error" data-js-form-field-errors id="id_firstname_helptext"></span>
+        </div>
+        <div class="form__field">
+          <label for="image" class="form__label"></label>
+          <input type="file" id="id_image" name="image" class="file--input__input" accept="image/*">
+          <span class="form__error" data-js-form-field-errors id="id_firstname_helptext"></span>
+        </div>
+        <div class="form__field">{{ form.captcha }}</div>
+        <input type="submit" class="button-standart login-button margin__top--1" value="Отправить">
+        
+        {% if 0 == 1 %}
+          {{ form.as_p }}
+        {% endif %}
+      </form>
+    </div>
+  </section>
+{% endblock %}
+{% block scripts %}
+  <script src="{% static 'deps/scripts/FormValidation.js' %}"></script>
+{% endblock %}

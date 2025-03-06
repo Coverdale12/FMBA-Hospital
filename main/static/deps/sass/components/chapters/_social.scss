@@ -1,0 +1,48 @@
+.social {
+  font-family: $--font-family-base;
+
+  &__list {
+    @include flexible(column, space-between, $wr: wrap);
+    width: 100%;
+    row-gap: 10px;
+  }
+
+  &__link {
+    @include flexible($al-items: center);
+    text-decoration: none;
+    text-wrap: nowrap;
+    color: $--color-dark;
+    transition-duration: $--transition-duration;
+    font-weight: 500;
+    column-gap: 10px;
+    @include hoverEffect(color, $--color-blue-dark-less);
+
+    &::before {
+      @include flexible();
+      width: 60px;
+      aspect-ratio: 1;
+    }
+
+    &[href*="t.me"] {
+      &::before {
+        content: url("/static/deps/icons/components/social/social-telegram-logo-icon.svg");
+      }
+    }
+
+    &[href*="vk"] {
+      &::before {
+        content: url("/static/deps/icons/components/social/social-vk-logo-icon.svg");
+      }
+    }
+  }
+
+  @media screen and (width < 1000px) {
+    width: 100%;
+  }
+
+  @media screen and (width < 1000px) {
+    &__list {
+      flex-direction: row;
+    }
+  }
+}

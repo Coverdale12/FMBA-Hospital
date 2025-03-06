@@ -1,0 +1,20 @@
+@keyframes swapSections{
+  0%{
+    opacity: 0.7;
+  }
+  50%{
+    opacity: 0.85;
+  }
+  100%{
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@for $i from 1 to 20 {
+  $value: $i * 0.2;
+  section.sections-animate:nth-of-type(#{$i}){
+    opacity: 0.7;
+    transform: translateX(10px);
+    animation: swapSections 0.5s ease-in-out #{$value}s forwards;
+  }
+}
